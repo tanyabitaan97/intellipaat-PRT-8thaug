@@ -4,7 +4,7 @@ pipeline {
 
     environment {
         DOCKERHUB_USERNAME = 'YOUR_DOCKERHUB_USERNAME'
-        IMAGE_NAME = "${DOCKERHUB_USERNAME}/student-app"
+        IMAGE_NAME = "tanyabitaan/student-app"
         IMAGE_TAG = "${BUILD_NUMBER}"
         CONTAINER_NAME = 'student-app'
         PORT = '3000'
