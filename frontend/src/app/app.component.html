@@ -1,0 +1,72 @@
+<div class="container">
+  <h1>Student Management</h1>
+  <p>Angular Frontend + AWS RDS MySQL</p>
+
+  <div class="card">
+    <h2>{{ editingId ? 'Edit Student' : 'Add Student' }}</h2>
+
+    <div class="grid">
+      <label>
+        Name
+        <input [(ngModel)]="student.name" placeholder="Student name">
+      </label>
+
+      <label>
+        Email
+        <input [(ngModel)]="student.email" type="email" placeholder="student@example.com">
+      </label>
+
+      <label>
+        Course
+        <input [(ngModel)]="student.course" placeholder="Computer Science">
+      </label>
+
+      <label>
+        Age
+        <input [(ngModel)]="student.age" type="number" min="1">
+      </label>
+    </div>
+
+    <div class="actions">
+      <button class="primary" (click)="save()">
+        {{ editingId ? 'Update' : 'Add Student' }}
+      </button>
+      <button class="secondary" (click)="cancel()">Clear</button>
+    </div>
+
+    <div class="success" *ngIf="message">{{ message }}</div>
+    <div class="error" *ngIf="error">{{ error }}</div>
+  </div>
+
+  <div class="card">
+    <h2>Students</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Course</th>
+          <th>Age</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of students">
+          <td>{{ s.id }}</td>
+          <td>{{ s.name }}</td>
+          <td>{{ s.email }}</td>
+          <td>{{ s.course }}</td>
+          <td>{{ s.age }}</td>
+          <td>
+            <button class="secondary" (click)="edit(s)">Edit</button>
+            <button class="danger" (click)="remove(s.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="students.length === 0">No students found.</p>
+  </div>
+</div>
